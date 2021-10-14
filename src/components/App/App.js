@@ -27,16 +27,32 @@ class App extends Component {
       name: this.state.name,
       number: this.state.number,
     };
-    this.setState(prevState => {
-      return {
-        contacts: [...prevState.contacts, contact],
-      };
-    });
+
+    const contactInPhonebook = this.state.contacts.some(
+      contact => contact.name.toLowerCase() === this.state.name.toLowerCase(),
+    );
+    console.log(contactInPhonebook);
+    if (contactInPhonebook) {
+      alert(`${this.state.name} is already in contacts.`);
+    } else {
+      this.setState(prevState => {
+        return {
+          contacts: [...prevState.contacts, contact],
+        };
+      });
+    }
+
     this.resetForm();
   };
 
   resetForm = () => {
     this.setState({ name: '', number: '', filter: '' });
+  };
+
+  deleteContact = contactId => {
+    this.setState(prevState => ({
+      contacts: prevState.contacts.filter(contact => contact.id !== contactId),
+    }));
   };
 
   render() {
@@ -79,9 +95,9 @@ class App extends Component {
           <button type="submit">Add contact</button>
         </form>
 
-        <h1>Contacts</h1>
+        <h2>Contacts</h2>
 
-        <h2>Find contacts by name</h2>
+        <p>Find contacts by name</p>
         <input
           type="text"
           name="filter"
@@ -94,7 +110,10 @@ class App extends Component {
         <ul>
           {filteredName.map(({ id, name, number }) => (
             <li key={id}>
-              {name}: {number}
+              <span>
+                {name}: {number}
+              </span>
+              <button onClick={() => this.deleteContact(id)}>Delete</button>
             </li>
           ))}
         </ul>

@@ -1,0 +1,17 @@
+.label {
+  font-size: 18px;
+}
+
+.input {
+  display: block;
+  padding: 5px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  border: 1px solid gray;
+}
+.input:hover,
+.input:focus {
+  border: 1px solid rgba(105, 132, 253, 0.897);
+  box-shadow: 3px 4px 8px 0px rgba(105, 132, 253, 0.897);
+}

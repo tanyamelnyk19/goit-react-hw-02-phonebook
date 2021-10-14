@@ -1,0 +1,20 @@
+.contact + .contact {
+  margin-top: 5px;
+}
+
+.button {
+  margin-left: 15px;
+  padding: 3px 5px;
+  cursor: pointer;
+  border-radius: 5px;
+  border: 1px solid gray;
+  background-color: transparent;
+}
+
+.button:hover,
+.button:focus {
+  background-color: rgba(105, 132, 253, 0.897);
+  color: aliceblue;
+  border: 1px solid rgba(105, 132, 253, 0.897);
+  box-shadow: 4px 4px 8px 0px rgba(105, 132, 253, 0.897);
+}

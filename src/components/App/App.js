@@ -38,22 +38,27 @@ class App extends Component {
     }));
   };
 
-  render() {
-    const { filter } = this.state;
+  getFilteredName() {
     const normalizedFilter = this.state.filter.toLowerCase();
     const filteredName = this.state.contacts.filter(contact =>
       contact.name.toLowerCase().includes(normalizedFilter),
     );
+    return filteredName;
+  }
+
+  render() {
+    const { filter } = this.state;
+    const { handleSubmit, handleFilter, deleteContact } = this;
 
     return (
       <div className="App">
         <h1>Phonebook</h1>
-        <ContactForm onSubmit={this.handleSubmit} />
+        <ContactForm onSubmit={handleSubmit} />
         <h2>Contacts</h2>
-        <Filter filter={filter} handleFilter={this.handleFilter} />
+        <Filter filter={filter} handleFilter={handleFilter} />
         <ContactList
-          filteredName={filteredName}
-          deleteContact={this.deleteContact}
+          filteredName={this.getFilteredName()}
+          deleteContact={deleteContact}
         />
       </div>
     );
